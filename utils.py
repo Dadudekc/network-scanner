@@ -13,13 +13,12 @@ def get_host_name(ip_address):
         return None
 
 def format_scan_results(scan_results):
-    """
-    Format scan results for display or logging.
-    """
-    formatted_result = ""
-    for ip, port, status, banner in scan_results:
-        formatted_result += f"IP: {ip}, Port: {port}, Status: {status}, Banner: {banner}\n"
-    return formatted_result.strip()
+    formatted_results = []
+    for result in scan_results:
+        formatted_results.append(
+            f"IP: {result[0]}, Port: {result[1]}, Status: {result[2]}, Banner: {result[3].strip()}"
+        )
+    return "\n".join(formatted_results)
 
 def analyze_encrypted_traffic(packet):
     """

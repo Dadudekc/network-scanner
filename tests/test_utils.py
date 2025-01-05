@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 from utils import get_host_name, format_scan_results, analyze_encrypted_traffic, detect_tls_handshake
-
+import socket
 class TestUtils(unittest.TestCase):
 
     @patch('utils.socket.gethostbyaddr')

@@ -2,7 +2,10 @@ import unittest
 import numpy as np
 from sklearn.exceptions import NotFittedError
 from anomaly_detection import AnomalyDetectionModel
-
+import requests
+import socket
+from sklearn.ensemble import IsolationForest
+from sklearn.preprocessing import StandardScaler
 
 class TestAnomalyDetectionModel(unittest.TestCase):
 

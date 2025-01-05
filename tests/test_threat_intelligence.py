@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
 from threat_intelligence import check_ip_abuseipdb
+import requests
 
 class TestThreatIntelligence(unittest.TestCase):
 
