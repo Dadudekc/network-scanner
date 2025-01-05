@@ -2,3 +2,8 @@ requests
 packaging
 pandas
 numpy
+scapy
+scikit-learn
+python-dotenv
+pytest
+pytest-cov

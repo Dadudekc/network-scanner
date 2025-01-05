@@ -15,6 +15,7 @@ setup(
         "packaging",
         "pandas",
         "numpy",
+        "scapy"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
