@@ -15,25 +15,25 @@ def load_preprocess_data(file_path='your_dataset.csv'):
     return scaled_data
 
 def build_autoencoder(input_dim, deep=False):
+    input_layer = Input(shape=(input_dim,))
     if deep:
-        input_layer = Input(shape=(input_dim,))
         encoded = Dense(128, activation='relu')(input_layer)
         encoded = Dense(64, activation='relu')(encoded)
         decoded = Dense(64, activation='relu')(encoded)
         decoded = Dense(input_dim, activation='sigmoid')(decoded)
         autoencoder = Model(inputs=input_layer, outputs=decoded)
     else:
-        model = Sequential([
-            Dense(128, activation='relu', input_dim=input_dim),
-            Dense(64, activation='relu'),
-            Dense(32, activation='relu'),
-            Dense(64, activation='relu'),
-            Dense(128, activation='relu'),
-            Dense(input_dim, activation='sigmoid')
-        ])
-        autoencoder = model
+        encoded = Dense(128, activation='relu')(input_layer)
+        encoded = Dense(64, activation='relu')(encoded)
+        encoded = Dense(32, activation='relu')(encoded)
+        decoded = Dense(64, activation='relu')(encoded)
+        decoded = Dense(128, activation='relu')(decoded)
+        decoded = Dense(input_dim, activation='sigmoid')(decoded)
+        autoencoder = Model(inputs=input_layer, outputs=decoded)
+
     autoencoder.compile(optimizer='adam', loss='mse')
     return autoencoder
+
 
 def train_autoencoder(data, deep=False, epochs=50, batch_size=32):
     if data.shape[0] == 0 or data.shape[1] == 0:
